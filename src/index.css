@@ -1,13 +1,91 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(4, 4, 4);
+  color: bisque;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* utilitiy classes */
+.primary-h{
+  text-align: center;
+  font-size: 4rem;
+  font-weight: bold;
+  
+}
+.secondary-h{
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  
+}
+
+.form{
+  color: bisque;
+  font-size: x-large;
+  margin: 2rem;
+  margin-top: 1rem;
+}
+
+/* styling the productdetails page */
+#productimage{
+  position: absolute;
+  top: 6rem;
+  left:4rem;
+}
+
+#productdesc{
+  border:2px solid white;
+  position: absolute;
+  top: 15rem;
+  right: 7rem;
+  width:65rem;
+  height:50%;
+  padding-top:2rem ;
+}
+
+.fields{
+  font-size: xx-large;
+  font-weight: bold;
+  margin:1rem;
+  margin-left: 4rem;
+}
+
+/* styling the seller interface */
+#addproductbtn{
+  display: flex;
+  position: absolute;
+  right: 6.5rem;
+  top: 1rem;
+}
+
+.sellerproduct{
+  background-color: rgb(30, 30, 30);
+  border: 2px solid bisque;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 20rem;
+  width: 90%;
+  margin: 2rem;
+  border-radius: 2rem;
+  font-size: x-large;
+
+}
+.sellerproductimg{
+  width:33%;
+  margin-left:1rem ;
+  margin-top:1rem;
+  height: 70%;
+}
+.sellerproducts{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* add new product */
+.formback{
+  background-color: rgb(43, 41, 41);
 }

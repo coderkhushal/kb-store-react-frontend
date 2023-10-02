@@ -2,7 +2,7 @@ import './App.css';
 import Login from './Components/Login';
 import Main from './Components/Main';
 import Navbar from './Components/Navbar';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import Signup from './Components/Signup';
 import Userstate from './Context/user/userstate';
 import Productdetails from './Components/Productdetails';
@@ -14,7 +14,7 @@ function App() {
   return (
     <Userstate>
       
-    <BrowserRouter>
+    <HashRouter>
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />} />
@@ -26,7 +26,7 @@ function App() {
             <Route path="*" element={<NoPage />} /> */}
 
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
 
     </Userstate>
 

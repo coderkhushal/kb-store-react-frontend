@@ -17,7 +17,7 @@ function App() {
     <BrowserRouter basename='/kb-store-react-frontend'>
       <Navbar />
       <Routes >
-        <Route path="/" element={<Main />} />
+        <Route path="/kb-store-react-frontend" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup/>} />
         <Route path="/details" element={<Productdetails/>} />

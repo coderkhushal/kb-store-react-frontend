@@ -14,9 +14,9 @@ function App() {
   return (
     <Userstate>
       
-    <HashRouter>
+    <BrowserRouter basename='/kb-store-react-frontend'>
       <Navbar />
-      <Routes>
+      <Routes >
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup/>} />
@@ -26,7 +26,7 @@ function App() {
             <Route path="*" element={<NoPage />} /> */}
 
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
 
     </Userstate>
 

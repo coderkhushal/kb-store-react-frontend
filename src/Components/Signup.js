@@ -1,18 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Usercontext from '../Context/user/usercontext'
 import { useNavigate } from 'react-router-dom'
+
+const base_url= "https://kb-store-backend-6nri.onrender.com"
 const Signup = () => {
     const navigate= useNavigate()
     const context = useContext(Usercontext)
     const { signupinput, setsignupinput } = context
-
+    const [isseller, setisseller] = useState(true)
     const handleonchange = (e) => {
         setsignupinput({ ...signupinput, [e.target.id]: e.target.value })
 
     }
     const handlesignup = async (forminfo) => {
 
-        let response = await fetch("http://127.0.0.1:5000/kbstore/users/signup", {
+        let response = await fetch(`${base_url}/kbstore/${isseller ? "seller" : "users"}/signup`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -33,9 +35,17 @@ const Signup = () => {
       
 
         return (
-            <div>
                 <>
                     <h1 className='primary-h'>Signup</h1>
+                <div class="mx-auto btn-group btn-group-toggle my-4" style={{margin:'auto',width:"20rem",display:"flex"}} data-toggle="buttons">
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" checked onClick={()=>{setisseller(true)}} /> SELLER
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" onClick={()=>{setisseller(false)}} /> USER
+                </label>
+            </div>
+            <div>
                     <div className="container">
                         <form className='form'>
                             <div className="form-group">
@@ -61,8 +71,8 @@ const Signup = () => {
                             <button type="submit" className="btn btn-primary" onClick={handleonclick}>Submit</button>
                         </form>
                     </div>
-                </>
             </div>
+                </>
         )
     }
 

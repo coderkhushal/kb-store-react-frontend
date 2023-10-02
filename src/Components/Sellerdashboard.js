@@ -2,7 +2,8 @@ import React, {  useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Selleproducts from './Selleproducts'
 import Addnewproduct from './Addnewproduct'
-
+// http://127.0.0.1:5000
+const base_url = "https://kb-store-backend-6nri.onrender.com"
 const Sellerdashboard=()=>{
   const location = useLocation()
   const token = location.state.token
@@ -10,7 +11,7 @@ const Sellerdashboard=()=>{
   
   const fetchproducts = async() => {
     
-    let response = await fetch(`http://127.0.0.1:5000/kbstore/seller/myproducts`, {
+    let response = await fetch(`${base_url}/kbstore/seller/myproducts`, {
       method: "GET",
       headers: {
           "Content-Type": "application/json",

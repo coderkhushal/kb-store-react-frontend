@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 // import { useNavigate } from 'react-router-dom'
 import Usercontext from '../Context/user/usercontext'
 import { useNavigate } from 'react-router-dom'
+const base_url = "https://kb-store-backend-6nri.onrender.com"
 
 const Login = () => {
     const navigation = useNavigate()
@@ -16,7 +17,7 @@ const Login = () => {
     }
 
     const handlelogin = async (logininput) => {
-        let response = await fetch(`http://127.0.0.1:5000/kbstore/${isseller ? "seller" : "users"}/login`, {
+        let response = await fetch(`${base_url}/kbstore/${isseller ? "seller" : "users"}/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

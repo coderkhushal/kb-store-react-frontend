@@ -1,16 +1,19 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
+
+const base_url ="https://kb-store-backend-6nri.onrender.com"
 
 const Addnewproduct = (props) => {
   const token = props.token;
   const [productinfo, setproductinfo] = useState({ name: "", price: "", specifications: "" })
-  const [image, setimage]= useState()
+  const [selectedfile, setselectedfile] = useState()
+
 
   const handleonchange = (e) => {
     setproductinfo({ ...productinfo, [e.target.id]: e.target.value })
   }
 
   const createproduct = async (product) => {
-    let response = await fetch(`http://127.0.0.1:5000/kbstore/seller/createproduct`, {
+    let response = await fetch(`${base_url}/kbstore/seller/createproduct`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,10 +32,37 @@ const Addnewproduct = (props) => {
     document.getElementById("productform").reset()
   }
 
-  const onuploadingfile=(e)=>{
-    console.log(e.target.files[0])
-    setimage(e.target.files[0])
+  const handlefilechange=async(e)=>{
+    setselectedfile(e.target.files[0])
   }
+  
+
+  const handleupload= async()=>{
+    const formdata= new FormData()
+    formdata.append("file",selectedfile)
+
+    try{
+      const response = await fetch(`${base_url}/kbstore/seller/upload`,{
+        method:"POST",
+        headers:{
+          "auth-token":token
+        },
+        body: formdata
+      })
+
+      if(response.ok){
+        console.log("file uploaded and saved to backend successfully")
+      }
+      else{
+        console.error("file upload failed")
+      }
+    }catch(err){
+      console.log("error uploading file",err)
+    }
+
+  }
+  
+
 
   // make an image functionality for seller to upload for his product
   //store the image in backend server
@@ -62,29 +92,25 @@ const Addnewproduct = (props) => {
                   <input onChange={handleonchange} type="text" className="form-control" id="name" aria-describedby="emailHelp" />
                 </div>
                 <div className="form-group formback">
-                  <label htmlFor="price" className='secondary-h'>Price</label>
+                  <label htmlFor="price" className='secondary-h'>Price(in $)</label>
                   <input onChange={handleonchange} type="text" className="form-control" id="price" />
                 </div>
                 <div className="form-group formback">
-                  <label htmlFor="specifications" className='secondary-h'>Price</label>
+                  <label htmlFor="specifications" className='secondary-h'>Specifications</label>
                   <input onChange={handleonchange} type="text" className="form-control" id="specifications" />
                 </div>
                 <div className="modal-footer">
                 </div>
-                <button type="button" onClick={(e) => { e.preventDefault(); createproduct(productinfo); clearform() }} className="btn btn-primary">Submit</button>
-              </form>
-
-
-              <form method="post" action="/image" encType='multipart/form-data'>
               <div className="form-group formback">
-                  <label htmlFor="exampleFormControlFile1" className='secondary-h'>Enter Product images (Max-3)</label>
-                  <input type="file" className="form-control-file" id="exampleFormControlFile1" onChange={onuploadingfile} />
-                </div>
-                <button className='btn btn-primary' type="submit" onClick={(e)=>{e.preventDefault();}}>Upload Image</button>
+                <label htmlFor="exampleFormControlFile1" className='secondary-h'>Enter Product images (Max-3)</label>
+                <input type="file"  className="form-control-file" id="exampleFormControlFile1" onChange={handlefilechange} multiple/>
+                <button type="button" onClick={(e) => { e.preventDefault(); createproduct(productinfo); clearform();handleupload() }} className="btn btn-primary">Submit</button>
+              </div>
               </form>
-
+          
+             
             </div>
-          </div>
+          </div>()
         </div>
       </div>
     </>

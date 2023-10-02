@@ -1,13 +1,13 @@
 import React, { useContext, useEffect } from 'react'
 import Item from './Item'
 import Usercontext from '../Context/user/usercontext'
-
+const base_url = "https://kb-store-backend-6nri.onrender.com"
 const Items = () => {
     const {items,setitems} = useContext(Usercontext)
 
     const fetchproducts= async()=>{
         let token = localStorage.getItem("token")
-        let response = await fetch("http://127.0.0.1:5000/kbstore/users/products",{
+        let response = await fetch(`${base_url}/kbstore/users/products`,{
             method:"GET",
             headers:
                 {
@@ -30,9 +30,8 @@ const Items = () => {
     <div style={{display:"flex",flexWrap:"wrap",alignItems:"center",justifyContent:"center"}}>
         {items &&
             items.map((e)=>{
-                return <Item image={"https://th.bing.com/th/id/OIP.Gdzxm_JryABOWQ7Wd64wQwHaE8?pid=ImgDet&rs=1"} price= {e.price} name={e.name} specifications={e.specifications} />
-                return <Item image={"https://th.bing.com/th/id/OIP.Gdzxm_JryABOWQ7Wd64wQwHaE8?pid=ImgDet&rs=1"} price= {e.price} name={e.name} specifications={e.specifications} />
-            })
+                return <Item image={"https://www.freeiconspng.com/uploads/no-image-icon-11.PNG"} price= {e.price} name={e.name} specifications={e.specifications} />
+                 })
         }
     </div>
   )

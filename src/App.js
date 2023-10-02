@@ -10,8 +10,6 @@ import Sellerdashboard from './Components/Sellerdashboard';
 
 
 
-
-
 function App() {
   return (
     <Userstate>

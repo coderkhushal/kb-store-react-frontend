@@ -1,11 +1,11 @@
 
 
-
+const base_url = "https://kb-store-backend-6nri.onrender.com"
 const Selleproducts = (props) => {
   // useEffect(()=>{console.log(props.token)})
   const deleteproduct = async (e) => {
     console.log("clicked")
-    let response = await fetch(`http://127.0.0.1:5000/kbstore/seller/deleteproduct/${props.id}`, {
+    let response = await fetch(`${base_url}/kbstore/seller/deleteproduct/${props.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const Selleproducts = (props) => {
     <div>
 
       <div className="card sellerproduct" >
-        <img src="https://th.bing.com/th/id/OIP.Gdzxm_JryABOWQ7Wd64wQwHaE8?pid=ImgDet&rs=1" className="sellerproductimg" alt="" />
+        <img src="https://www.freeiconspng.com/uploads/no-image-icon-11.PNG" className="sellerproductimg" alt="" />
         <div className="card-body">
           <h5 className="card-title secondary-h">{props.product_name}</h5>
           <h5>Price: {props.price}</h5>
